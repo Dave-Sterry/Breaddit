@@ -18,4 +18,25 @@ describe ('rootReducer', () => {
   test('Check that initial state of formVisibleReducer matches root reducer', ()=>{
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, { type: null }));
   });
+
+  test('Check that ADD_POST works for postListReducer, rootReducer', () => {
+    const action ={
+      type: 'ADD_POST',
+      title: "All About Rye",
+      body: "It's the best bread",
+      votecount: 5,
+      timestamp: "2/16/2021 2:2",
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().masterPostList).toEqual(postListReducer(undefined, action));
+  });
+
+  test('Check that TOGGLE_FORM works for formVisibleReducer, rootReducer', ()=>{
+    const action ={
+      type: 'TOGGLE_FORM'
+    }
+    store.dispatch(action);
+    expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
+  });
 });
