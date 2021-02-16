@@ -11,7 +11,7 @@ function ReusableForm(props) {
         placeholder='Title of your post' />
         <input
         type='text'
-        name='Body'
+        name='body'
         placeholder='Tell us about your bread' />
         <button type='submit'>{props.buttonText}</button>
       </form>

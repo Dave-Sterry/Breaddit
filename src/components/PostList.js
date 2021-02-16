@@ -5,22 +5,22 @@ import Post from './Post';
 function PostList(props){
   return(
     <>
-    {Object.values(props.postList).Map((post)=>
-    <Post
-      title={post.title}
-      body={post.body}
-      votecount={post.votecount}
-      // timestamp={post.timestamp}
-      id={post.id}
-      key={post.id}
-      />
-    )}
+      {Object.values(props.postList).map((post)=>
+        <Post
+          title={post.title}
+          body={post.body}
+          votecount={post.votecount}
+          // timestamp={post.timestamp}
+          id={post.id}
+          key={post.id}
+        />
+      )}
     </>
   )
 }
 
 PostList.propTypes = {
-  postList: Proptypes.object,
+  postList: PropTypes.object,
 };
 
 export default PostList;

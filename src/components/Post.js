@@ -6,9 +6,9 @@ function Post(props){
     <>
     <h3>{props.title}</h3>
     <p>{props.body} </p>
-    <p>{props.timestamp}</p>
-    <button onClick={}>Up-vote</button>
-    <button onClick={}>Down-vote</button>
+    {/* <p>{props.timestamp}</p> */}
+    {/* <button onClick={}>Up-vote</button>
+    <button onClick={}>Down-vote</button> */}
     </>
   )
 }
