@@ -9,9 +9,27 @@ describe('postListReducer', () => {
     title: "All About Rye",
     body: "It's the best bread",
     votecount: 5,
-    timestamp: "2/16/2021 2:28",
+    timestamp: "2/16/2021 2:2",
     id: 1
   }
+  
+  const currentState ={
+    1:{
+      title: "All About Rye",
+    body: "It's the best bread",
+    votecount: 5,
+    timestamp: "2/16/2021 2:2",
+    id: 1
+    },
+    2:{
+    title: "SourDough Time",
+    body: "It's a good bread",
+    votecount: 4,
+    timestamp: "2/16/2021 2:30",
+    id: 2
+    }
+  }
+
   test("Should return default state if there is no action type passed into the reducer", () => {
     expect(postListReducer({}, {type: null})).toEqual({});
   });
@@ -36,4 +54,20 @@ describe('postListReducer', () => {
       }
     })
   });  
+
+  test('Should delete a post',() =>{
+    action={
+      type: "DELETE_POST",
+      id: 1
+    };
+    expect(postListReducer(currentState, action)).toEqual({
+      2:{
+        title: "SourDough Time",
+        body: "It's a good bread",
+        votecount: 4,
+        timestamp: "2/16/2021 2:30",
+        id: 2
+        }
+    })
+  })
 });
