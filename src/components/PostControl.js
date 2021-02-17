@@ -3,6 +3,7 @@ import PostList from './PostList';
 import NewPostForm from './NewPostForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
 
 class PostControl extends React.Component {
 
@@ -10,41 +11,23 @@ class PostControl extends React.Component {
 //methods
 handleNewFormClick =() => {
   const { dispatch } = this.props
-  const action = {
-    type: 'TOGGLE_FORM'
-  }
+  const action = a.toggleForm();
   dispatch(action);
 }
 
 handleAddingNewPostToList = (newPost) =>{
   const { dispatch } = this.props;
-  const { id, title, body, votecount } = newPost;
-  const action ={
-    type: "ADD_POST",
-    id: id,
-    title: title,
-    body: body,
-    votecount: votecount
-  }
+  const action = a.addPost(newPost);
   dispatch(action);
-  const action2 ={
-    type: 'TOGGLE_FORM'
-  }
+  const action2 = a.toggleForm();
   dispatch(action2);
 }
 
 handleUpVoting = (id) => {
   const { dispatch } = this.props;
   const thisPost = this.props.masterPostList[id];
-  const { votecount, title, body } = thisPost;
-
-  const action = {
-    type: "ADD_POST",
-    id: id,
-    votecount: votecount + 1,
-    title,
-    body
-  }
+  thisPost.votecount = thisPost.votecount + 1;
+  const action = a.addPost(thisPost);
   dispatch(action);
 }
 
