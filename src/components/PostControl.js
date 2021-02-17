@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class PostControl extends React.Component {
- 
 
 
 //methods
@@ -48,29 +47,6 @@ handleUpVoting = (id) => {
   }
   dispatch(action);
 }
-
-// handleBuyProduct = (id) => {
-//   const newMasterProductList = this.state.masterProductList.map((product)=> ({
-//     ...product, 
-//       quantity: product.id === id ? product.quantity -1 : product.quantity 
-//   }))
-//   this.setState({
-//     masterProductList: newMasterProductList,
-//     selectedProduct: null
-//   });
-// }
-
-
-// handleBuyBeer = () => {
-//   const newKeg = this.state.selectedKeg;
-//   const adjustedKeg = { ...newKeg, beer: newKeg.beer -1 }
-//   const editedMasterKegList = this.state.masterKegList.filter(keg => keg.id !== this.state.selectedKeg.id).concat(adjustedKeg);
-//   this.setState({
-//     masterKegList: editedMasterKegList,
-//     selectedKeg: adjustedKeg
-//   });
-
-
 
 render(){
   let currentlyVisibleState = null;
