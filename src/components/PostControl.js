@@ -34,6 +34,44 @@ handleAddingNewPostToList = (newPost) =>{
   dispatch(action2);
 }
 
+handleUpVoting = (id) => {
+  const { dispatch } = this.props;
+  const thisPost = this.props.masterPostList[id];
+  const { votecount, title, body } = thisPost;
+
+  const action = {
+    type: "ADD_POST",
+    id: id,
+    votecount: votecount + 1,
+    title,
+    body
+  }
+  dispatch(action);
+}
+
+// handleBuyProduct = (id) => {
+//   const newMasterProductList = this.state.masterProductList.map((product)=> ({
+//     ...product, 
+//       quantity: product.id === id ? product.quantity -1 : product.quantity 
+//   }))
+//   this.setState({
+//     masterProductList: newMasterProductList,
+//     selectedProduct: null
+//   });
+// }
+
+
+// handleBuyBeer = () => {
+//   const newKeg = this.state.selectedKeg;
+//   const adjustedKeg = { ...newKeg, beer: newKeg.beer -1 }
+//   const editedMasterKegList = this.state.masterKegList.filter(keg => keg.id !== this.state.selectedKeg.id).concat(adjustedKeg);
+//   this.setState({
+//     masterKegList: editedMasterKegList,
+//     selectedKeg: adjustedKeg
+//   });
+
+
+
 render(){
   let currentlyVisibleState = null;
   let buttonText = null;
@@ -41,7 +79,7 @@ render(){
     currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
     buttonText = "Return to List";
   } else {
-    currentlyVisibleState = <PostList postList = {this.props.masterPostList} />;
+    currentlyVisibleState = <PostList postList = {this.props.masterPostList} onClickingUpVote = {this.handleUpVoting} />;
     buttonText="New Post";
   }
   return(

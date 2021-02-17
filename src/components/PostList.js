@@ -13,6 +13,7 @@ function PostList(props){
           // timestamp={post.timestamp}
           id={post.id}
           key={post.id}
+          whenClickingUpVote= {props.onClickingUpVote}
         />
       )}
     </>
@@ -21,6 +22,7 @@ function PostList(props){
 
 PostList.propTypes = {
   postList: PropTypes.object,
+  onClickingUpVote: PropTypes.func
 };
 
 export default PostList;
