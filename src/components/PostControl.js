@@ -38,6 +38,7 @@ handleDownVoting = (id) => {
   const action = a.addPost(thisPost);
   dispatch(action);
 }
+// handleSelectingPost = 
 
 render(){
   let currentlyVisibleState = null;

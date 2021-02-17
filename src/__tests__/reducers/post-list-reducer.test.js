@@ -1,5 +1,6 @@
 import postListReducer from '../../reducers/post-list-reducer';
 import * as c from '../../actions/ActionTypes';
+import * as a from '../../actions';
 
 
 describe('postListReducer', () => {
@@ -57,10 +58,7 @@ describe('postListReducer', () => {
   });  
 
   test('Should delete a post',() =>{
-    action={
-      type: c.DELETE_POST,
-      id: 1
-    };
+    action = a.deletePost(1)
     expect(postListReducer(currentState, action)).toEqual({
       2:{
         title: "SourDough Time",

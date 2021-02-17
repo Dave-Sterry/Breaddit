@@ -19,3 +19,12 @@ export const addPost = (post) => {
     id
   }
 }
+
+export const selectPost = (post) => ({
+  type: c.SELECT_POST,
+  post
+});
+
+export const deselectPost = () => ({
+  type: c.DESELECT_POST
+});
