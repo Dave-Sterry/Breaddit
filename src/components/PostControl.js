@@ -4,15 +4,22 @@ import NewPostForm from './NewPostForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from './../actions';
+import PostDetail from './PostDetails'
 
 class PostControl extends React.Component {
 
 
 //methods
-handleNewFormClick =() => {
-  const { dispatch } = this.props
-  const action = a.toggleForm();
-  dispatch(action);
+handleClick =() => {
+  if (this.props.selectedPost != null) {
+    const {dispatch} = this.props;
+    const action = a.deselectPost();
+    dispatch(action)
+  } else {
+    const { dispatch } = this.props
+    const action = a.toggleForm();
+    dispatch(action);
+  }
 }
 
 handleAddingNewPostToList = (newPost) =>{
@@ -21,6 +28,13 @@ handleAddingNewPostToList = (newPost) =>{
   dispatch(action);
   const action2 = a.toggleForm();
   dispatch(action2);
+}
+
+handleChangingSelectedPost = (id) => {
+  const {dispatch } = this.props;
+  const selectedPost = this.props.masterPostList[id];
+  const action = a.selectPost(selectedPost)
+  dispatch(action);
 }
 
 handleUpVoting = (id) => {
@@ -38,22 +52,24 @@ handleDownVoting = (id) => {
   const action = a.addPost(thisPost);
   dispatch(action);
 }
-// handleSelectingPost = 
 
 render(){
   let currentlyVisibleState = null;
   let buttonText = null;
-  if(this.props.formVisibleOnPage) {
+  if (this.props.selectedPost != null) {
+    currentlyVisibleState = <PostDetail post = {this.props.selectedPost} />
+    buttonText="Return to List"
+  } else if (this.props.formVisibleOnPage) {
     currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
     buttonText = "Return to List";
   } else {
-    currentlyVisibleState = <PostList postList = {this.props.masterPostList} onClickingUpVote = {this.handleUpVoting} onClickingDownVote = {this.handleDownVoting} />;
+    currentlyVisibleState = <PostList postList = {this.props.masterPostList} onClickingUpVote = {this.handleUpVoting} onClickingDownVote = {this.handleDownVoting} onPostSelection = {this.handleChangingSelectedPost} />;
     buttonText="New Post";
   }
   return(
     <>
     {currentlyVisibleState}
-    <button onClick={this.handleNewFormClick}>{buttonText}</button>
+    <button onClick={this.handleClick}>{buttonText}</button>
     </>
   );
   }
@@ -79,7 +95,8 @@ const mapStateToProps = state => {
   
   return {
     masterPostList: sortedList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectedPost: state.selectedPost
   }
 }
 

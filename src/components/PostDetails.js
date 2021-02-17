@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PopstDetail(props) {
+function PostDetail(props) {
   const { post } = props;
-}
+
 
 return (
   <React.Fragment>
@@ -11,9 +11,11 @@ return (
     <p>{post.body}</p>
     {/* <button ></button> */}
   </React.Fragment>
-
-)
+  )
+}
 
 PostDetail.propTypes = {
-  post = PropTypes.object
+  post: PropTypes.object
 }
+
+export default PostDetail;
