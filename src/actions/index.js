@@ -6,3 +6,14 @@ export const deletePost = id => ({
 export const toggleForm = () => ({
   type: 'TOGGLE_FORM'
 });
+
+export const addPost = (post) => {
+  const { title, body, votecount, id } = post;
+  return {
+    type: 'ADD_POST',
+    title,
+    body,
+    votecount,
+    id
+  }
+}

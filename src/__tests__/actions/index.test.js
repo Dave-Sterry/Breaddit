@@ -12,4 +12,14 @@ describe('breaddit actions', () => {
       type: 'TOGGLE_FORM'
     });
   });
+
+  it('addPost should create ADD_POST action', () => {
+    expect(a.addPost({title: "title", body:'body', votecount:1, id:1})).toEqual({
+      type: 'ADD_POST',
+      title: "title",
+      body: "body",
+      votecount: 1,
+      id: 1
+    });
+  });
 });
