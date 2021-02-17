@@ -7,8 +7,6 @@ import * as a from './../actions';
 import PostDetail from './PostDetails'
 
 class PostControl extends React.Component {
-
-
 //methods
 handleClick =() => {
   if (this.props.selectedPost != null) {
