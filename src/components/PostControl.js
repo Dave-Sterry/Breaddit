@@ -31,6 +31,14 @@ handleUpVoting = (id) => {
   dispatch(action);
 }
 
+handleDownVoting = (id) => {
+  const { dispatch } = this.props;
+  const thisPost = this.props.masterPostList[id];
+  thisPost.votecount = thisPost.votecount - 1;
+  const action = a.addPost(thisPost);
+  dispatch(action);
+}
+
 render(){
   let currentlyVisibleState = null;
   let buttonText = null;
@@ -38,7 +46,7 @@ render(){
     currentlyVisibleState = <NewPostForm onNewPostCreation = {this.handleAddingNewPostToList} />;
     buttonText = "Return to List";
   } else {
-    currentlyVisibleState = <PostList postList = {this.props.masterPostList} onClickingUpVote = {this.handleUpVoting} />;
+    currentlyVisibleState = <PostList postList = {this.props.masterPostList} onClickingUpVote = {this.handleUpVoting} onClickingDownVote = {this.handleDownVoting} />;
     buttonText="New Post";
   }
   return(
@@ -57,8 +65,22 @@ PostControl.propTypes ={
 };
 
 const mapStateToProps = state => {
+  let sortedList = {}; 
+
+  let objKeys = Object.keys(state.masterPostList)
+  let sortedKeys = objKeys.sort(function(a,b) {
+    return state.masterPostList[b].votecount - state.masterPostList[a].votecount ;
+  });
+  sortedKeys.forEach(function(key) {
+    sortedList[key] = state.masterPostList[key];
+  });
+  
+  // let postListArr =  Object.entries(state.masterPostList)
+  // postListArr.sort((a, b) => (a.votecount > b.votecount) ? 1: - 1);
+  // console.log(postListArr)
+  // console.log({...postListArr})
   return {
-    masterPostList: state.masterPostList,
+    masterPostList: sortedList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
@@ -66,5 +88,6 @@ const mapStateToProps = state => {
 PostControl = connect(mapStateToProps)(PostControl);
 
 export default PostControl;
+
 
 
