@@ -6,7 +6,6 @@ function Post(props){
   return(
     <>
     <h3>{props.title}</h3>
-    <p>{props.body} </p>
     <p>{props.votecount}</p>
     {/* <p>{props.timestamp}</p> */}
     <button onClick={() => whenClickingUpVote(props.id)}>Up-vote</button>

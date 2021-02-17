@@ -61,24 +61,21 @@ render(){
 
 PostControl.propTypes ={
   masterPostList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  selectedPost: PropTypes.object
 };
 
 const mapStateToProps = state => {
   let sortedList = {}; 
 
-  let objKeys = Object.keys(state.masterPostList)
-  let sortedKeys = objKeys.sort(function(a,b) {
+  const objKeys = Object.keys(state.masterPostList)
+  const sortedKeys = objKeys.sort(function(a,b) {  
     return state.masterPostList[b].votecount - state.masterPostList[a].votecount ;
   });
   sortedKeys.forEach(function(key) {
     sortedList[key] = state.masterPostList[key];
   });
   
-  // let postListArr =  Object.entries(state.masterPostList)
-  // postListArr.sort((a, b) => (a.votecount > b.votecount) ? 1: - 1);
-  // console.log(postListArr)
-  // console.log({...postListArr})
   return {
     masterPostList: sortedList,
     formVisibleOnPage: state.formVisibleOnPage
