@@ -7,7 +7,8 @@ function PostDetail(props) {
 
 return (
   <React.Fragment>
-    <h1>{post.title} {post.votecount}</h1> 
+    <h1>{post.title}</h1> 
+    <h4>Votes: {post.votecount}</h4>
     <p>{post.body}</p>
     {/* <button ></button> */}
   </React.Fragment>

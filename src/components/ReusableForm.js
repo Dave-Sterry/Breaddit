@@ -9,11 +9,10 @@ function ReusableForm(props) {
         type='text'
         name='title'
         placeholder='Title of your post' />
-        <input
-        type='text'
-        name='body'
-        placeholder='Tell us about your bread' />
-        <button type='submit'>{props.buttonText}</button>
+      <textarea
+      name='body'
+      placeholder='Tell us about your bread' />
+      <button type='submit'>{props.buttonText}</button>
       </form>
     </>
   );

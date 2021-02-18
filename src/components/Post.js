@@ -7,7 +7,7 @@ function Post(props){
     <React.Fragment>
       <div onClick = {() => whenPostClicked(props.id)}>
         <h3>{props.title}</h3>
-        <p>{props.votecount}</p>
+        <p>Votes: {props.votecount}</p>
         {/* <p>{props.timestamp}</p> */}
       </div>
       <button onClick={() => whenClickingUpVote(props.id)}>Up-vote</button>
