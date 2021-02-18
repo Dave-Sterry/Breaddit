@@ -1,6 +1,6 @@
 <br>
 <h1 align = "center">
-  <b>Tap Room </b>
+  <b>Breaddit </b>
 </h1>
 
 <p align = "center">
